@@ -1,5 +1,5 @@
-from veiculo import Veiculo
-from calculo_valor import calcular_valor
+from logica.veiculo import Veiculo
+from logica.calculo_valor import calcular_valor
 
 # Lista de veículos atualmente no estacionamento
 veiculos_estacionados = []
