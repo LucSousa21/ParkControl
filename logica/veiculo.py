@@ -1,13 +1,12 @@
-import uuid
 from datetime import datetime
 
 class Veiculo:
-    def __init__(self, tipo):
+    def __init__(self, tipo, vaga_id):
         # Valida o tipo do veículo
         if tipo not in ['carro', 'moto']:
             raise ValueError("Tipo de veículo inválido. Use 'carro' ou 'moto'.")
-        
-        self.id = str(uuid.uuid4())       # ID único
+
+        self.vaga_id = vaga_id            # Ex: "C1", "M5"
         self.tipo = tipo                  # 'carro' ou 'moto'
         self.hora_entrada = datetime.now()
         self.hora_saida = None
@@ -26,4 +25,4 @@ class Veiculo:
         return fim - self.hora_entrada
 
     def __str__(self):
-        return f"Veículo {self.tipo.capitalize()} - ID: {self.id}"
+        return f"Veículo {self.tipo.capitalize()} - Vaga: {self.vaga_id}"
