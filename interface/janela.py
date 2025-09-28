@@ -35,7 +35,7 @@ class JanelaEstacionamento(ctk.CTk):
     def entrada_veiculo(self):
         tipo = self.tipo_var.get()
         veiculo = registrar_entrada(tipo)
-        messagebox.showinfo("Entrada", f"Veículo registrado!\nID: {veiculo.id}")
+        messagebox.showinfo("Entrada", f"Veículo registrado!\nID: {veiculo.vaga_id}")
 
     def saida_veiculo(self):
         veiculo_id = self.entry_id.get()
