@@ -7,7 +7,7 @@ class JanelaEstacionamento(ctk.CTk):
         super().__init__()
 
         self.title("ParkControl")
-        self.geometry("400x300")
+        self.geometry("900x800")
 
         # Entrada de veículo
         self.label_tipo = ctk.CTkLabel(self, text="Tipo do veículo:")
