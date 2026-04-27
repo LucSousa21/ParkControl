@@ -1,5 +1,9 @@
 from logica.veiculo import Veiculo
 from logica.calculo_valor import calcular_valor
+from banco.modelo import Vagas
+from banco.registrar_no_banco import registrarCarro, registrarMoto
+from banco.liberarVagas import liberarVagasCarros, liberarVagasMotos
+
 
 # Controle de vagas disponíveis
 vagas_moto = [f"M{i}" for i in range(1, 21)]
@@ -70,3 +74,36 @@ def registrar_saida(vaga_id):
 
     print(f"Saída registrada: {veiculo} | Valor a pagar: R${valor}")
     return valor
+
+
+def registrar_veiculo(tipo, modelo, placa):
+    """
+    Registra um veículo no banco de dados.
+
+    Parâmetros:
+        tipo (str): 'carro' ou 'moto'
+        modelo (str): modelo do veículo
+        placa (str): placa do veículo
+    """
+    veiculo = Vagas(tipo, modelo, placa)  # vaga será atribuída no registro
+    if tipo.lower() == "carro":
+        registrarCarro(veiculo)
+    elif tipo.lower() == "moto":
+        registrarMoto(veiculo)
+    else:
+        raise ValueError("Tipo de veículo inválido.")
+    
+def liberarvaga(placa):
+    """
+    Libera uma vaga específica.
+
+    Parâmetros:
+        placa (str): placa do veículo
+    """
+    if placa.lower() == "carro":
+        liberarVagasCarros(placa)
+    elif placa.lower() == "moto":
+        liberarVagasMotos(placa)
+    else:
+        raise ValueError("Tipo de veículo inválido.")
+

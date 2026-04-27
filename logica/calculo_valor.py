@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+
 def calcular_valor(veiculo):
     """
     Calcula o valor a ser cobrado de um veículo.

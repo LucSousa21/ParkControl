@@ -1,5 +1,6 @@
+import os
 from modelo import Vagas
-from registrar_no_banco import registrarDados
+from registrar_no_banco import registrarCarro, registrarMoto
 from deletar_dados import deletarDados
 from consultar_banco import consultarDados
 try:
@@ -18,8 +19,13 @@ try:
             break
 
         vaga = Vagas(tipo, modelo, placa)
-        registrarDados(vaga)
+        if tipo.lower() == "carro":
+            registrarCarro(vaga)
+        elif tipo.lower() == "moto":
+            registrarMoto(vaga)
         print("Testes de registro concluídos.")
+
+        os.system('cls' if os.name == 'nt' else 'clear')
         
 except Exception as e:
     print(f"Erro durante os testes: {e}")
