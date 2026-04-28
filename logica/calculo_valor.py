@@ -1,23 +1,22 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
+from banco.consultar_banco import consultarEntrada, verificarTipoVeiculo
 
 
-def calcular_valor(veiculo):
-    """
-    Calcula o valor a ser cobrado de um veículo.
+def calcular_valor(placa):
+    vaga = verificarTipoVeiculo(placa)
     
-    Parâmetros:
-        veiculo (Veiculo): objeto da classe Veiculo
     
-    Retorna:
-        valor_total (float): valor a ser cobrado
-    """
-    tempo = veiculo.calcular_tempo_permanencia()
+    entrada = consultarEntrada(placa)
+    if not entrada:
+        raise ValueError("Veículo não encontrado no banco de dados.")
+    saida = datetime.now()
+    tempo = saida - entrada
     horas = tempo.total_seconds() / 3600  # converte para horas
 
     # Valor base
-    if veiculo.tipo == 'carro':
+    if vaga == 'carro':
         valor_base = 8
-    elif veiculo.tipo == 'moto':
+    elif vaga == 'moto':
         valor_base = 4
     else:
         raise ValueError("Tipo de veículo inválido")
@@ -31,3 +30,4 @@ def calcular_valor(veiculo):
         cobranca_extra = (minutos_excedentes // 20) * 1  # R$1 a cada 20 minutos
         valor_total = valor_base + cobranca_extra
         return valor_total
+    

@@ -8,9 +8,10 @@ def criarbanco():
         cursor.execute('''CREATE TABLE IF NOT EXISTS VagasCarros(
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             ocupada INTEGER DEFAULT 0,
-                            vaga INTEGER,
+                            vaga TEXT,
                             veiculo TEXT,
-                            placa TEXT UNIQUE
+                            placa TEXT UNIQUE,
+                            entrada TEXT
                         )''')
         
         connmotos = db.connect('banco/BancoVagasMotos.db')
@@ -18,9 +19,10 @@ def criarbanco():
         cursor.execute('''CREATE TABLE IF NOT EXISTS VagasMotos(
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             ocupada INTEGER DEFAULT 0,
-                            vaga INTEGER,
+                            vaga TEXT,
                             veiculo TEXT,
-                            placa TEXT UNIQUE
+                            placa TEXT UNIQUE,
+                            entrada TEXT
                         )''')
     
     except db.Error as e:
@@ -42,7 +44,7 @@ def vagas_disponiveis():
     try:
         conncarros = db.connect('banco/BancoVagasCarros.db')
         cursor = conncarros.cursor()
-        cursor.execute("""INSERT INTO VagasCarros (vaga) 
+        cursor.execute("""INSERT INTO VagasCarros (id) 
                        VALUES (1), (2), (3), (4), (5),
                               (6), (7), (8), (9), (10),
                               (11), (12), (13), (14), (15), 
@@ -51,7 +53,7 @@ def vagas_disponiveis():
         
         connmotos = db.connect('banco/BancoVagasMotos.db')
         cursor = connmotos.cursor()
-        cursor.execute("""INSERT INTO VagasMotos (vaga) 
+        cursor.execute("""INSERT INTO VagasMotos (id) 
                         VALUES (1), (2), (3), (4), (5),
                                (6), (7), (8), (9), (10)
                        """)

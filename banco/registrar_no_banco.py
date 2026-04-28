@@ -1,21 +1,25 @@
 import sqlite3 as db
-from modelo import Vagas
+from datetime import datetime
+from banco.modelo import Vagas
 
 def registrarCarro(vaga):
     try:
         conn = db.connect('banco/BancoVagasCarros.db')
         cursor = conn.cursor()
         vaga = Vagas(vaga.tipo, vaga.modelo, vaga.placa)
-        cursor.execute(""" SELECT vaga FROM VagasCarros 
+        cursor.execute(""" SELECT id FROM VagasCarros 
                        WHERE ocupada = 0 
                        """)
         vaga_id = cursor.fetchone()
+        entrada = datetime.now().isoformat()
         
         if vaga_id:
             vaga_id = vaga_id[0]
             cursor.execute(""" UPDATE VagasCarros 
-                           SET ocupada = 1, vaga = ?, veiculo = ?, placa = ? 
-                           WHERE id = ? """, (vaga.tipo, vaga.modelo, vaga.placa, vaga_id))
+                           SET ocupada = 1, vaga = ?, veiculo = ?, placa = ?, entrada = ? 
+                           WHERE id = ? """, (vaga.tipo, vaga.modelo, vaga.placa, entrada, vaga_id))
+            
+        
         else:
             raise ValueError("Não há vagas disponíveis para este tipo de veículo.")
         
@@ -33,16 +37,19 @@ def registrarMoto(vaga):
         conn = db.connect('banco/BancoVagasMotos.db')
         cursor = conn.cursor()
         vaga = Vagas(vaga.tipo, vaga.modelo, vaga.placa)
-        cursor.execute(""" SELECT vaga FROM VagasMotos 
+        cursor.execute(""" SELECT id FROM VagasMotos 
                        WHERE ocupada = 0 
                        """)
         vaga_id = cursor.fetchone()
+        entrada = datetime.now().isoformat()
         
         if vaga_id:
             vaga_id = vaga_id[0]
             cursor.execute(""" UPDATE VagasMotos 
-                           SET ocupada = 1, vaga = ?, veiculo = ?, placa = ? 
-                           WHERE id = ? """, (vaga.tipo, vaga.modelo, vaga.placa, vaga_id))
+                           SET ocupada = 1, vaga = ?, veiculo = ?, placa = ?, entrada = ?
+                           WHERE id = ? """, (vaga.tipo, vaga.modelo, vaga.placa, entrada, vaga_id))
+            
+
         else:
             raise ValueError("Não há vagas disponíveis para este tipo de veículo.")
         
