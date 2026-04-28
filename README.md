@@ -19,6 +19,8 @@ Um sistema simples de controle de estacionamento, feito em **Python** com **Cust
 - **Python 3** 
 - **CustomTkinter** (interface gráfica) 
 - **Git/GitHub** (controle de versão) 
+- **SQLite3** (Banco de Dados)
+- **DB Browser for SQLite** (Recomendado para visualização dos dados)
 
 --- 
 
@@ -35,7 +37,12 @@ cd ParkControl
 pip install customtkinter 
 
 ``` 
-3. Execute o progrma: 
+3. Prepare o Banco de Dados (Importante!)
+``` 
+python banco/criar_banco.py
+
+``` 
+4. Execute a Aplicação 
 ``` 
 python main.py 
 
