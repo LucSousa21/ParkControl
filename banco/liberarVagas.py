@@ -39,4 +39,12 @@ def liberarVagasMotos(placa):
             conn.close()
 
 
+def liberarVagas():
+    conn = db.connect('banco/BancoVagasCarros.db')
+    cursor = conn.cursor()
+    cursor.execute(""" UPDATE VagasCarros SET ocupada = 0, vaga = NULL, veiculo = NULL, placa = NULL, entrada = NULL """)
+    conn.commit()
+    conn.close()
+
+
 
