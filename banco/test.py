@@ -6,7 +6,7 @@ try:
     # Teste de registro de carro
     while True:
         tipo = input("Digite o tipo de veículo (carro/moto): ").strip().lower()
-        modelo = input("Digite o modelo do veículo: ").strip()
+        modelo = input("Digite o modelo do veículo: ").strip().lower()
         placa = input("Digite a placa do veículo: ").strip().upper()
         veiculo = Vagas(tipo, modelo, placa)
         if tipo == 'carro':

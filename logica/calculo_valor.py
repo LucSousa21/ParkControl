@@ -1,12 +1,12 @@
 from datetime import datetime, timedelta
-from banco.consultar_banco import consultarEntrada, verificarTipoVeiculo
+from banco.consultar_banco import consultarEntradaCarro, consultarEntradaMoto, verificarTipoVeiculo
 
 
-def calcular_valor(placa):
-    vaga = verificarTipoVeiculo(placa)
+def calcular_valor(tipo, placa):
+
+        
     
-    
-    entrada = consultarEntrada(placa)
+    entrada = consultarEntradaCarro(placa) if tipo == 'carro' else consultarEntradaMoto(placa)
     if not entrada:
         raise ValueError("Veículo não encontrado no banco de dados.")
     saida = datetime.now()
@@ -14,9 +14,9 @@ def calcular_valor(placa):
     horas = tempo.total_seconds() / 3600  # converte para horas
 
     # Valor base
-    if vaga == 'carro':
+    if tipo == 'carro':
         valor_base = 8
-    elif vaga == 'moto':
+    elif tipo == 'moto':
         valor_base = 4
     else:
         raise ValueError("Tipo de veículo inválido")

@@ -11,7 +11,7 @@ def registrarCarro(vaga):
                        WHERE ocupada = 0 
                        """)
         vaga_id = cursor.fetchone()
-        entrada = datetime.now().isoformat()
+        entrada = datetime.now().isoformat(timespec='seconds')
         
         if vaga_id:
             vaga_id = vaga_id[0]
@@ -24,9 +24,9 @@ def registrarCarro(vaga):
             raise ValueError("Não há vagas disponíveis para este tipo de veículo.")
         
     except db.Error as e:
-        print(f"Erro ao registrar os dados: {e}")
+        raise ValueError(f"Erro ao registrar os dados: {e}")
     except Exception as e:
-        print(f"Erro inesperado: {e}")
+        raise ValueError(f"Erro inesperado: {e}")
     finally:
         if conn:
             conn.commit()
@@ -41,7 +41,7 @@ def registrarMoto(vaga):
                        WHERE ocupada = 0 
                        """)
         vaga_id = cursor.fetchone()
-        entrada = datetime.now().isoformat()
+        entrada = datetime.now().isoformat(timespec='seconds')
         
         if vaga_id:
             vaga_id = vaga_id[0]
@@ -54,9 +54,9 @@ def registrarMoto(vaga):
             raise ValueError("Não há vagas disponíveis para este tipo de veículo.")
         
     except db.Error as e:
-        print(f"Erro ao registrar os dados: {e}")
+        raise ValueError(f"Erro ao registrar os dados: {e}")
     except Exception as e:
-        print(f"Erro inesperado: {e}")
+        raise ValueError(f"Erro inesperado: {e}")
     finally:
         if conn:
             conn.commit()

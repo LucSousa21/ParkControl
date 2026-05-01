@@ -1,5 +1,7 @@
-from interface.janela import JanelaEstacionamento
+from interface.janela_inicial import JanelaInicial
 
 if __name__ == "__main__":
-    app = JanelaEstacionamento()
+    app = JanelaInicial()
     app.mainloop()
+
+    

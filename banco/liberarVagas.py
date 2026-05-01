@@ -7,13 +7,13 @@ def liberarVagasCarros(placa):
         cursor = conn.cursor()
         vaga = Vagas(None, None, placa)
         cursor.execute("""
-                    UPDATE VagasCarros SET ocupada = 0, vaga = id, veiculo = NULL, placa = NULL, entrada = NULL
+                    UPDATE VagasCarros SET ocupada = 0, vaga = NULL, veiculo = NULL, placa = NULL, entrada = NULL
                     WHERE placa = ?
-                    """, (placa,))
+                    """, (vaga.placa,))
     except db.Error as e:
-        print(f"Erro ao liberar a vaga: {e}")
+        raise ValueError(f"Erro ao liberar a vaga: {e}")
     except Exception as e:
-        print(f"Erro inesperado: {e}")
+        raise ValueError(f"Erro inesperado: {e}")
     finally:
         if conn:
             conn.commit()
@@ -28,11 +28,11 @@ def liberarVagasMotos(placa):
                     UPDATE VagasMotos SET ocupada = 0, vaga = NULL, 
                        veiculo = NULL, placa = NULL, entrada = NULL
                     WHERE placa = ?
-                    """, (placa,))
+                    """, (vaga.placa,))
     except db.Error as e:
-        print(f"Erro ao liberar a vaga: {e}")
+        raise ValueError(f"Erro ao liberar a vaga: {e}")
     except Exception as e:
-        print(f"Erro inesperado: {e}")
+        raise ValueError(f"Erro inesperado: {e}")
     finally:
         if conn:
             conn.commit()
