@@ -1,18 +1,32 @@
 # ParkControl
 
-Um sistema simples de controle de estacionamento, feito em **Python** com **CustomTkinter**. O programa gerencia a entrada e saída de veículos, calcula o tempo de permanência e pode ser expandido para incluir relatórios e tarifas. 
+Sistema desktop de controle de estacionamento desenvolvido em Python, com interface gráfica moderna utilizando CustomTkinter e persistência de dados com SQLite.
+
+O sistema permite gerenciar entradas e saídas de veículos, calcular automaticamente o tempo de permanência e controlar vagas disponíveis de forma estruturada.
 
 --- 
 
 ## Funcionalidades 
 
-- Registrar entrada de veículos. 
-- Registrar saída de veículos. 
-- Calcular tempo de permanência no estacionamento. 
-- Interface gráfica moderna com **CustomTkinter**. 
-- Código modular, separado em interface e lógica. 
+- Registro de entrada de veículos (carro e moto)
+- Registro de saída com cálculo automático do valor
+- Controle de vagas disponíveis
+- Painel administrativo para visualização dos dados
+- Validação de placas (padrão antigo e Mercosul)
+- Tratamento de erros e validações de entrada
 
 --- 
+
+## Banco de dados
+
+O sistema utiliza SQLite, com tabelas separadas para carros e motos, contendo:
+
+- ID da vaga
+- Status de ocupação
+- Tipo de vaga
+- Modelo do veículo
+- Placa (única)
+- Horário de entrada
 
 ## Tecnologias utilizadas 
 
@@ -49,6 +63,8 @@ python main.py
 ``` 
 
 --- 
+
+## Autor
 
 Lucas Carvalho 
 
